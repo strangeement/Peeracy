@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Peeracy</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<header>
+		<div class="header">
+			<li><%= link_to 'Home', :root %></li>
+			<% if user_signed_in? %>
+			<li>Hi <%= current_user.email %>, <%= link_to('sign out', destroy_user_session_path, :method => :delete) %></li>
+		  	<% else %>
+		  	<li><%= link_to "Sign in", new_session_path(:user) %></li>
+		  	<li><%= link_to "Sign up", new_registration_path(:user) %></li>
+		  	<% end %>
+		</div>  		
+	</header>
+  	
+  	<p class="notice"><%= notice %></p>
+   	<p class="alert"><%= alert %></p>
+  	
+    <%= yield %>
+  </body>
+</html>
